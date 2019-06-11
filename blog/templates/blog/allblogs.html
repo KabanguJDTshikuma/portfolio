@@ -1,13 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    {% load staticfiles %}
+     {% load staticfiles %}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.5">
-    <title>Kabang JD Tshikuma</title>
+    <title>Kabangu's Blog</title>
+
+    
 
   
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,7 +31,8 @@
         }
       }
     </style>
-   
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
   </head>
   <body>
 <header>
@@ -42,47 +45,30 @@
     <div class="navbar-nav  ml-auto">
       <a class="nav-item nav-link" href="https://twitter.com/KabanguJD">Twitter</a>
       <a class="nav-item nav-link" href="{% static 'CV_NI.pdf' %}">Resume</a>
-      <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+      <a class="nav-item nav-link active" href="{% url 'allblogs' %}">Blog</a>
     </div>
   </div>
-</nav>
   
 </header>
 
 <main role="main">
-
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading">Hi, I'm Kabangu</h1>
-      <p class="lead text-muted">My passion is Computer Science, as a CS graduate I further my programming knowledge in my spare time by building various projects in Python. 
-I am versed with JavaScript fundamentals and Django - the most renowned Python framework.</p>
-      <p>
-        <a href="mailto:kabangufuture@gmail.com" class="btn btn-primary my-2">Email Me</a>
-      </p>
-      <img class="img-fluid" src="{% static 'kabangu.jpg' %}" width="200" height="270">
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-
-        {% for job in jobs %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}">
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-
-      </div>
-    </div>
-  </div>
-
+	<div class="container">
+		<h1 class="text-center pt-3">Welcome to Kabangu's Blog</h1>
+		<br>
+		<br>
+		<h3>Latest Posts</h3>
+		<hr>
+		{% for blog in blogs %}
+		<a href="{% url 'detail' blog.id %}"><h4>{{ blog.title }}</h4></a>
+		<p>{{ blog.pub_date_prettry }}</p>
+		<div class="card" style="width: 18rem;">
+  			<img src="{{ blog.image.url }}" class="card-img-top img-fluid" alt="..">
+  		</div>
+		<p>{{ blog.summary }} ......</p>
+		<hr>
+		<hr>
+		{% endfor %}
+    </div> 
 </main>
 
 <footer class="text-muted">
